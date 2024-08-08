@@ -46,4 +46,4 @@ class CityService {
     }
 }
 
-module.export = CityService;
+module.exports = CityService;
