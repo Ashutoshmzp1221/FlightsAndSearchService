@@ -1,4 +1,4 @@
-const { CityService }  = require('../services/index')
+const { CityService } = require('../services/index');
 
 const cityService = new CityService();
 
@@ -10,7 +10,7 @@ const create = async (req, res) => {
             success: true,
             message: 'Successfully created a city',
             err: {}
-        })
+        });
     } catch (error) {
         console.log(error);
         return res.status(500).json({
@@ -18,10 +18,9 @@ const create = async (req, res) => {
             success: false,
             message: 'Not able to create a city',
             err: error
-        })
+        });
     }
 }
-
 // DELETE. -> /city/:id
 const destroy = async (req, res) => {
     try {
@@ -31,7 +30,7 @@ const destroy = async (req, res) => {
             success: true,
             message: 'Successfully deleted a city',
             err: {}
-        })
+        });
     } catch (error) {
         console.log(error);
         return res.status(500).json({
@@ -43,6 +42,7 @@ const destroy = async (req, res) => {
     }
 }
 
+// GET -> /city/:id
 const get = async (req, res) => {
     try {
         const response = await cityService.getCity(req.params.id);
@@ -51,10 +51,10 @@ const get = async (req, res) => {
             success: true,
             message: 'Successfully fetched a city',
             err: {}
-        })
+        });
     } catch (error) {
         console.log(error);
-        return req.status(500).json({
+        return res.status(500).json({
             data: {},
             success: false,
             message: 'Not able to get the city',
@@ -63,18 +63,19 @@ const get = async (req, res) => {
     }
 }
 
+// Patch -> /city/:id -> req.body
 const update = async (req, res) => {
     try {
         const response = await cityService.updateCity(req.params.id, req.body);
         return res.status(200).json({
             data: response,
             success: true,
-            message: 'Successfully updated a city',
+            message: 'Successfully fetched a city',
             err: {}
-        })
+        });
     } catch (error) {
         console.log(error);
-        return req.status(500).json({
+        return res.status(500).json({
             data: {},
             success: false,
             message: 'Not able to update the city',
@@ -83,9 +84,10 @@ const update = async (req, res) => {
     }
 }
 
-module.exports ={
+
+module.exports = {
     create,
     destroy,
     get,
-    update
+    update,
 }
