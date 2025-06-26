@@ -12,7 +12,8 @@ router.patch('/city/:id', CityController.update);
 router.get('/city',CityController.getAll);
 
 router.post('/flights',FlightMiddlewares.validateCreateFlight, FlightController.create);
+router.get('/flights/:id', FlightController.getFlight);
 router.get('/flights', FlightController.getAll);
-
+router.patch('/flights/:id', FlightController.update);
 router.post('/airports',AirportController.create);
 module.exports = router;
